@@ -9,14 +9,16 @@ class Sonnet(Document):
         self.id = self.extract_sonnet_id(title)
 
     # extract the id from every title by cutting off the rest, make sure it is an integer
-    def extract_sonnet_id(self, title) -> int:
+    @staticmethod
+    def extract_sonnet_id(title) -> int:
         match = re.match(r'Sonnet (\d+): (.+)', title)
         sonnet_id = int(match.group(1)) if match else None
         return sonnet_id
 
     # extract the title only from every title in the dictionary by cutting off the prefix
     # make sure it is a string
-    def extract_sonnet_title(self, title) -> str:
+    @staticmethod
+    def extract_sonnet_title(title) -> str:
         match = re.match(r'Sonnet \d+: (.+)', title)
         cleaned_title = match.group(1) if match else title
         return cleaned_title
